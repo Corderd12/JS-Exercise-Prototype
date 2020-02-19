@@ -73,7 +73,7 @@ Person.prototype.toString = function() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car(model, milesPerGallon) {
+/*function Car(model, milesPerGallon) {
   this.model = model;
   this.milesPerGallon = milesPerGallon;
   this.tank = 0;
@@ -84,10 +84,41 @@ Car.prototype.fill = function(gallons) {
   this.tank += gallons;
 }
 
-Car.prototype.drive = function(milesWanted) {
+Car.prototype.drive = function(distance) {
   this.odometer += distance;
   this.tank -= distance / this.milesPerGallon
 }
+
+/* ---------------------Stretch Goal ----------------------- */
+
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+};
+
+Car.prototype.drive = function(distancedPlanned) {
+  const carRange = this.tank * this.milesPerGallon;
+  if (distancedPlanned > carRange) {
+    this.odometer += carRange;
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles!`;
+    } else {
+    this.tank -= distancedPlanned / this.milesPerGallon;
+    console.log("Everything Works");
+  }
+};
+
+let myWhip = new Car("Toyota", 30);
+
+myWhip.fill(12); //Max fuel range 360 miles
+myWhip.drive(360);
+
 
 
 /*
